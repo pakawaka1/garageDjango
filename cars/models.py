@@ -2,67 +2,35 @@ from django.db import models
 from django.core.validators import RegexValidator
 
 class Car(models.Model):
-    make = models.CharField(max_length=20,
-        error_messages = {
-            'invalid': 'Make must not have more than 20 characters.',
-            'blank': 'Enter a make.'
-        }
-    )
-    model = models.CharField(max_length=20,
-        error_messages = {
-            'invalid': 'Model must not have more than 20 characters.',
-            'blank': 'Enter a model.'
-        }
-    )
+    id = models.AutoField(primary_key=True)
+    make = models.CharField(max_length=20)
+    model = models.CharField(max_length=20)
     year = models.CharField(max_length=4,
-        error_messages = {
-            'invalid': 'Year must have 4 characters.',
-            'blank': 'Enter a year.'
-        }
-    )
-    seats = models.CharField(max_length=10, 
-        error_messages = {
-            'invalid': 'Seats must not have more than 10 characters.',
-            'blank': 'Enter the number of seats.'
-        }
-    )
-    color = models.CharField(max_length=10,
-        error_messages = {
-            'invalid': 'Color must not have more than 10 characters.',
-            'blank': 'Enter the color.'
-        }
-    )
-    VIN = models.CharField(max_length=17, unique=True,
-        error_messages = {
-            'invalid': 'Enter a valid VIN.',
-            'blank': 'Enter a VIN.'
-        },
-        validators = [
-            RegexValidator(  
-                regex='^[a-zA-Z0-9]*$',
-                message='VIN must be alphanumeric.',
-                code='invalid_VIN'
-            )
+        validators = [ 
+            RegexValidator( 
+                regex='^[0-9]{4}',
+                message='Year must be a 4-digit number.',
+                code='invalid_year'
+            )         
         ]
     )
-    currentMileage = models.CharField(max_length=7,
+    seats = models.CharField(max_length=10)
+    color = models.CharField(max_length=10)
+    VIN = models.CharField(max_length=17, unique=True,
         error_messages = {
-            'invalid': 'Current milieage must not have more than 7 characters.',
-            'blank': 'Enter the current mileage.'
-        }
+            'unique': "This VIN has already been registered."
+        },
+        validators = [ 
+            RegexValidator( 
+                regex='^[a-zA-Z0-9]{17}$',
+                message='Invalid VIN.  Please check your VIN.',
+                code='invalid_VIN'
+            )         
+        ]
     )
-    serviceInterval = models.CharField(max_length=50,
-        error_messages = {
-            'invalid': 'Service internal must not have more than 50 characters.',
-            'blank': 'Enter the service interval.'
-        }
-    )
-    nextService = models.CharField(max_length=50,
-        error_messages = {
-            'invalid': 'Service internal must not have more than 50 characters.',
-            'blank': 'Enter the service interval.'
-        }
-    )
+    currentMileage = models.CharField(max_length=7)
+    serviceInterval = models.CharField(max_length=50)
+    nextService = models.CharField(max_length=50)
 
     def  __str__(self):
         return self.make

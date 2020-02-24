@@ -7,20 +7,23 @@ class Truck(models.Model):
     model = models.CharField(max_length=20)
     year = models.CharField(max_length=4,
         validators = [ 
-                RegexValidator( 
-                    regex='^[0-9].{4,}$',
-                    message='Year must have 4 characters.',
-                    code='invalid_year'
-                )         
-            ]
+            RegexValidator( 
+                regex='^[0-9]{4}$',
+                message='Year must be a 4-digit number.',
+                code='invalid_year'
+            )        
+        ]
     )
     seats = models.CharField(max_length=10)
     bedLength = models.CharField(max_length=10)
     color = models.CharField(max_length=10)
     VIN = models.CharField(max_length=17, unique=True,
+        error_messages = {
+            'unique': "This VIN has already been registered."
+        },
         validators = [
             RegexValidator(
-                regex='^[a-zA-Z0-9].{17,}*$',
+                regex='^[a-zA-Z0-9]{17}$',
                 message='Invalid VIN. Please check your VIN.',
                 code='invalid_VIN'
             )

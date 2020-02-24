@@ -8,18 +8,21 @@ class Boat(models.Model):
     year = models.CharField(max_length=4,
         validators = [ 
             RegexValidator( 
-                regex='^[a-zA-Z0-9].{4,4}$',
-                message='Year must have 4 characters.',
-                code='invalid_HIN'
-            )         
+                regex='^[0-9]{4}$',
+                message='Year must be a 4-digit number.',
+                code='invalid_year'
+            )
         ]
     )
     length = models.CharField(max_length=20)
     width = models.CharField(max_length=20)
-    HIN = models.CharField(max_length=17, unique=True,
+    HIN = models.CharField(max_length=13, unique=True,
+        error_messages = {
+            'unique': "This HIN has already been registered."
+        },
         validators = [ 
             RegexValidator( 
-                regex='^[a-zA-Z0-9].{12,13}$',
+                regex='^[a-zA-Z0-9]{12,13}$',
                 message='Invalid HIN.  Please check your HIN.',
                 code='invalid_HIN'
             )         

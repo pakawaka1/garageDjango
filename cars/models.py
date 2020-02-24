@@ -8,7 +8,7 @@ class Car(models.Model):
     year = models.CharField(max_length=4,
         validators = [ 
             RegexValidator( 
-                regex='^[0-9]{4}',
+                regex='^[0-9]{4}$',
                 message='Year must be a 4-digit number.',
                 code='invalid_year'
             )         

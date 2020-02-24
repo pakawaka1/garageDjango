@@ -4,7 +4,12 @@ from django.core.validators import EmailValidator
 class Auth(models.Model):
 
     name = models.CharField(max_length=10)
-    email = models.EmailField(max_length=30, unique=True)
+    email = models.EmailField(max_length=30, unique=True,
+        error_messages = {
+            'unique': "This email address has already been registered."
+        }
+    )
+    
     # email = models.CharField(max_length=30, unique=True,
     #     validators = [
     #         EmailValidator(

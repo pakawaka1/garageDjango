@@ -6,3 +6,4 @@ from django.apps import AppConfig
 
 class BoatsConfig(AppConfig):
     name = 'boats'
+    label = 'my.boats'

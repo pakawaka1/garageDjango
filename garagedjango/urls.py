@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.conf.urls import url, include
 
-from urlpatterns = [
+urlpatterns = [
     url('admin/', admin.site.urls),
     url('', include('auth.urls')),
     url('', include('boats.urls')),

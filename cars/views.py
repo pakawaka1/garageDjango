@@ -1,6 +1,8 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from django.shortcuts import render
+from rest_framework import viewsets
+from .models import Car
+from .serializers import CarSerializer
 
-# Create your views here.
+class CarView(viewsets.ModelViewSet):
+	queryset = Car.objects.all()
+	serializer_class = CarSerializer

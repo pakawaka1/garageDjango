@@ -6,9 +6,8 @@ router = routers.DefaultRouter()
 router.register('auth', views.AuthView)
 
 urlpatterns = [
-    url('/', includes(router.urls)),
-    url('/login', includes(login.urls)),
-    url('/user', includes(user.urls),
-    url('/logout', includes(logout.urls),
-
+    url('', include(router.urls)),
+    url('login/', include(router.urls)),
+    url('user/', include(router.urls)),
+    url('logout/', include(router.urls))
 ]

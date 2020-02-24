@@ -6,3 +6,4 @@ from django.apps import AppConfig
 
 class CarsConfig(AppConfig):
     name = 'cars'
+    label = 'my.cars'

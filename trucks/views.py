@@ -1,6 +1,8 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from django.shortcuts import render
+from rest_framework import viewsets
+from .models import Truck
+from .serializers import TruckSerializer
 
-# Create your views here.
+class TruckView(viewsets.ModelViewSet):
+	queryset = Truck.objects.all()
+	serializer_class = TruckSerializer

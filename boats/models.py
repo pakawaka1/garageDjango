@@ -1,15 +1,68 @@
 from django.db import models
+from django.core.validators import RegexValidator
 
 class Boat(models.Model):
-    make = models.CharField(max_length=[20, 'Make must not have more than 20 characters.'])
-    model = models.CharField(max_length=[20, 'Model must not have more than 20 characters.'])
-    year = models.CharField(min_length=[4 'Year must have at least 4 characters.'], max_length=[4, 'Year must not have more than 4 characters.'])
-    length = models.CharField(max_length=[20, 'Length must not have more than 20 characters.'])
-    width = models.CharField(max_length=[20, 'Width must not have more than 20 characters.'])
-    HIN = models.CharField(min_length=[12, 'HIN must have at least 12 characters.'], max_length=[13, 'HIN must not have more than 13 characters.'])
-    currentHours = models.CharField(max_length=[7, 'Current hours must not have more than 7 characters.'])
-    serviceInterval = models.CharField(max_length=50)
-    nextService = models.CharField(max_length=50)
+    make = models.CharField(max_length=20,
+        error_messages = {
+            'invalid': 'Make must not have more than 20 characters.',
+            'blank': 'Enter a make.'
+        }
+    )
+    model = models.CharField(max_length=20,
+        error_messages = {
+            'invalid': 'Model must not have more than 20 characters.',
+            'blank': 'Enter a model.'
+        }
+    )
+    year = models.CharField(max_length=4,
+        error_messages = {
+            'invalid': 'Year must have 4 characters.',
+            'blank': 'Enter a year.'
+        }
+    )
+    length = models.CharField(max_length=20, 
+        error_messages = {
+            'invalid': 'Length must not have more than 20 characters.',
+            'blank': 'Enter the length.'
+        }
+    )
+    width = models.CharField(max_length=20,
+        error_messages = {
+            'invalid': 'Width must not have more than 20 characters.',
+            'blank': 'Enter the width.'
+        }
+    )
+    HIN = models.CharField(max_length=13, unique=True,
+        error_messages = {
+            'invalid': 'Enter a valid HIN.',
+            'blank': 'Enter a HIN.'
+        },
+        validators = [ 
+            RegexValidator( 
+                regex='^[a-zA-Z0-9]*$',
+                message='HIN must be alphanumeric.',
+                code='invalid_HIN'
+            )         
+        ]
+    )
+    currentHours = models.CharField(max_length=7,
+        error_messages = {
+            'invalid': 'Current hours must not have more than 7 characters.',
+            'blank': 'Enter the current mileage.'
+        }
+    )
+    serviceInterval = models.CharField(max_length=50,
+        error_messages = {
+            'invalid': 'Service internal must not have more than 50 characters.',
+            'blank': 'Enter the service interval.'
+        }
+    )
+    nextService = models.CharField(max_length=50,
+        error_messages = {
+            'invalid': 'Service internal must not have more than 50 characters.',
+            'blank': 'Enter the service interval.'
+        }
+    )
 
     def  __str__(self):
-        return self.name
+        return self.make

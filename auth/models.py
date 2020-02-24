@@ -1,10 +1,30 @@
 from django.db import models
+from django.core.validators import EmailValidator
 
-class User(models.Model):
-    name = models.CharField(max_length=[20 'Name must not have more than 20 characters.'])
-    email = models.CharField(max_length=[30 'Email address must not have more than 30 characters.'], unique=true, validators = [EmailValidator(message='Please enter a valid email address.')])
-    password = models.CharField(min_length=[7, 'Password must not have less than 7 characters.'], select=true)
-     )
+class Auth(models.Model):
+    name = models.CharField(max_length=10,
+        error_messages = {
+            'invalid': 'Name must not have more than 20 characters.',
+            'blank': 'Enter a name.'
+        }
+    )
+    email = models.CharField(max_length=30, unique=True, 
+        error_messages = {
+            'invalid': 'Enter a valid email address.',
+            'blank': 'Enter an email address'
+        }, 
+        validators = [
+            EmailValidator(
+                message='Email must be valid.',
+                code='invalid_email'
+            )
+        ]
+    )
+    password = models.CharField(max_length=30,
+        error_messages = {
+            'blank': 'Enter a password'
+        }
+    )
 
     def  __str__(self):
         return self.name

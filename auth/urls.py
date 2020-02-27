@@ -1,13 +1,13 @@
-from django.conf.urls import url, include
+from django.conf.urls import url
 from . import views
 from rest_framework import routers
 
 router = routers.DefaultRouter(trailing_slash=False)
-router.register('auth', views.AuthView)
 
 urlpatterns = [
-    url('', include(router.urls)),
-    url('login', include(router.urls)),
-    url('user', include(router.urls)),
-    url('logout', include(router.urls))
+    url('auth/login', views.LoginUser.as_view()),
+    # url('auth/logout/', views.LogoutUser,
+    # url('auth/register', views.RegisterUser.as_view()),
+    url('hello/', views.HelloView.as_view(), name='hello'),
+
 ]

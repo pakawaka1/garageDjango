@@ -6,7 +6,7 @@ A backend server program that creates, reads, updates, and deletes vehicles in a
 1.  Requirements (with links to download)
 
     - Python: https://www.python.org/downloads/
-    - MondoDB: https://www.mongodb.com/try/download/community
+    - SQLite: https://www.sqlite.org/download.html
     - Postman: https://www.postman.com/downloads/
     - Your favorite code editor. I use Visual Studio Code: https://code.visualstudio.com/download
 

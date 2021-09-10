@@ -20,13 +20,16 @@ A backend server program that creates, reads, updates, and deletes vehicles in a
 
       `cd garageDjango`
       
-## Run App
+      `pip install virtualenv`
+      
+      `pip install django`
+      
+      `pip install djangorestframework`
+      
+      `pip install sqlparse`    
+      
+## Run The Server
 
 `cd garageDjango`
 
 `pip manage.py runserver`
-
-
-
-```
-

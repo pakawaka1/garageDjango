@@ -19,10 +19,6 @@ A backend server program that creates, reads, updates, and deletes vehicles in a
     - Next, run the following commands:
 
       `cd garageDjango`
-
-      `pip install virtualenv`
-      
-      `pip install django`
       
 ## Run App
 

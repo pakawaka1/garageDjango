@@ -12,27 +12,25 @@ A backend server program that creates, reads, updates, and deletes vehicles in a
 
 2.  App Setup (in Terminal)
 
-    - Now in your chosen directory, run this command to install Djangjo
+    - Now in your chosen directory, run:
 
-      `git clone git@github.com:pakawaka1/newDevCamp.git`
+      `git clone git@github.com:pakawaka1/garageDjango.git`
 
-    - Next, run the following two commands:
+    - Next, run the following commands:
 
-      `cd newDevCamp`
+      `cd garageDjango`
 
-      `npm install`
-
-## Usage
-
-Rename "config/config.env.env" to "config/config.env" and update the values/settings to your own from MongoDB.
-
+      `pip install virtualenv`
+      
+      `pip install django`
+      
 ## Run App
 
-```
-# Run in dev mode
-npm run dev
+`cd garageDjango`
 
-# Run in prod mode
-npm start
+`pip manage.py runserver`
+
+
+
 ```
 
